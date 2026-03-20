@@ -3,14 +3,6 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-
-try:
-    df = pd.read_csv("data/Churn_Modelling.csv")
-except FileNotFoundError:
-    st.error("Dataset not found. Please download from Kaggle and place in data/ folder.")
-    st.stop()
-
-
 import os
 import kaggle
 
@@ -29,7 +21,6 @@ def load_data():
 
 df = load_data()
 
-
 st.title("🏦 Bank Churn Analysis Dashboard")
 st.markdown("""
 This dashboard helps retention analysts at banks to identify customers at risk of churning 
@@ -38,8 +29,6 @@ and understand which factors drive churn most strongly.
 **Built by:** Tristan Villomann — Business Analytics, University of Amsterdam
 """)
 st.divider()
-
-df = pd.read_csv('C:/Users/Ideapad5/OneDrive/Documents/Projects/bank_churn/data/Churn_Modelling.csv')
 
 # Key metrics
 total = len(df)
