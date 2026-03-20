@@ -10,6 +10,26 @@ except FileNotFoundError:
     st.error("Dataset not found. Please download from Kaggle and place in data/ folder.")
     st.stop()
 
+
+import os
+import kaggle
+
+@st.cache_data
+def load_data():
+    os.environ['KAGGLE_USERNAME'] = st.secrets['KAGGLE_USERNAME']
+    os.environ['KAGGLE_KEY'] = st.secrets['KAGGLE_KEY']
+    
+    kaggle.api.authenticate()
+    kaggle.api.dataset_download_files(
+        'shantanudhakadd/bank-customer-churn-prediction',
+        path='data/',
+        unzip=True
+    )
+    return pd.read_csv('data/Churn_Modelling.csv')
+
+df = load_data()
+
+
 st.title("🏦 Bank Churn Analysis Dashboard")
 st.markdown("""
 This dashboard helps retention analysts at banks to identify customers at risk of churning 
